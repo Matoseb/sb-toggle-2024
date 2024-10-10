@@ -1,32 +1,13 @@
 <script setup lang="ts">
-import '~/assets/css/main.css'
+import '~/assets/css/main.scss'
 
-const { locale } = useI18n()
+const { framify } = await import(
+  /* vite-ignore */ 'https://unpkg.com/@matoseb/uselottie/build/bundle/index.js'
+)
 
-useServerHead({
-  htmlAttrs: {
-    lang: locale.value,
-  },
-  link: [
-    {
-      rel: 'icon',
-      href: '/icon.svg',
-      type: 'image/svg+xml',
-    },
-    {
-      rel: 'stylesheet',
-      href: 'https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css',
-    },
-  ],
-})
+window.framify = framify
 </script>
 
 <template>
-  <AppHeader />
-
-  <main id="main">
-    <NuxtPage />
-  </main>
-
-  <AppFooter />
+  <NuxtPage />
 </template>

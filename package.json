@@ -27,8 +27,10 @@
     "nuxt": "^3.13.2",
     "nuxt-kql": "^1.5.3",
     "prettier": "^3.3.3",
+    "sass": "^1.79.4",
     "sitemap": "^8.0.0",
     "typescript": "^5.5.4",
+    "vite-plugin-pug": "^0.4.1",
     "vue-tsc": "^2.1.6"
   }
 }

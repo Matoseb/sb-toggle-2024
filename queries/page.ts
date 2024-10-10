@@ -5,46 +5,52 @@ import type {
   KirbyQuerySchema,
 } from '#nuxt-kql'
 
-export interface KirbySharedPageData {
-  uri: string
-  title: string
-  intendedTemplate: string
-  description: string
-  cover?: {
-    url: string
+export function getSite(): KirbyQuerySchema {
+  return {
+    query: 'site',
+    select: {
+      title: true,
+      children: {
+        query: 'site.children',
+        select: {
+          title: true,
+          url: true,
+          webfolders: 'page.webfolders._toWebFolders',
+        },
+      },
+    },
   }
-  i18nMeta: Record<string, { title: string; uri: string }>
 }
 
-export interface KirbyPageData extends KirbySharedPageData {
-  blocks: KirbyBlock<string>[]
-  layouts: KirbyLayout[]
-}
+// // Fetch request
+// get().then(([data, error]) => {
+//   if (error) {
+//     document.body.innerHTML = error
+//     return
+//   }
 
-export type KirbyPageResponse = KirbyQueryResponse<KirbyPageData>
+//   const links = []
 
-export const sharedQuerySelects: KirbyQuerySchema['select'] = {
-  uri: true,
-  title: true,
-  intendedTemplate: true,
-  description: true,
-  cover: {
-    query: 'page.cover.toFile?.resize(1200)',
-    select: ['url'],
-  },
-  // Optional: Get title and URI of the current page in all languages
-  i18nMeta: true,
-}
+//   const { children } = data.result
 
-export function getPageQuery(pageId: string): KirbyQuerySchema {
+//   children.forEach((page) => {
+//     page.webfolders.forEach((file) => {
+//       // console.log(page.title, file);
+//       links.push(file.url)
+//     })
+//   })
+
+//   shuffle(links)
+//   framify(links)
+// })
+
+export function getPage(pageId: string): KirbyQuerySchema {
   return {
     query: `page("${pageId}")`,
     select: {
-      // The `toResolvedBlocks` method is a custom Kirby field Method to
-      // resolve images inside the image block from UUID to a file object
-      blocks: 'page.blocks.toResolvedBlocks',
-      layouts: 'page.layouts.toResolvedLayouts',
-      ...sharedQuerySelects,
+      title: true,
+      url: true,
+      webfolders: 'page.webfolders._toWebFolders',
     },
   }
 }
