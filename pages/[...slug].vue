@@ -10,6 +10,10 @@ if (!data.value.result) {
   await navigateTo('/')
 }
 
+useHead({
+  title: data.value.result.title,
+})
+
 onMounted(() => {
   const links = []
   const { webfolders } = data.value.result
