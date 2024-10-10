@@ -47,11 +47,11 @@ body .framify__cell-link.topage {
 }
 
 #app {
-  .framify__cell-link:not(.topage) {
-    display: none;
-  }
+  // .framify__cell-link:not(.topage) {
+  //   display: none;
+  // }
 
-  .framify__cell::after {
-    content: none;
-  }
+  // .framify__cell::after {
+  //   content: none;
+  // }
 }
