@@ -27,11 +27,61 @@ onMounted(() => {
 </script>
 
 <template lang="pug">
-Framify.page(v-if="items.length" :items)
+.pageTop
+  .pageTop__head
+    NuxtLink.pageTop__return(to="/") {{('↩')}}
+    h2 {{data.result.title}}
+    span
+  Framify.pageTop__frames(v-if="items.length" :items)
 </template>
 <style lang="scss">
-.page {
+.pageTop {
+  z-index: 1000;
+  position: relative;
+  background-color: #fff;
   width: 100%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  top: 0;
+
+  &__frames {
+    width: 100%;
+    top: 0;
+    flex: 1 1 auto;
+  }
+
+  &__head {
+    position: sticky !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    background-color: #fff;
+    z-index: 100;
+
+    // sticky margin
+
+    h2 {
+      text-align: center;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+  }
+
+  &__return {
+    text-decoration: none;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: black;
+    transition: color 0.3s;
+
+    &:hover {
+      color: hsl(212, 100%, 76%);
+    }
+  }
 }
 </style>
