@@ -6,17 +6,19 @@ const items = ref([])
 const route = useRoute()
 const { data, error } = await useKql(getPage(route.path))
 
-if (!data.value.result) {
+const result = useResult(data, error)
+
+if (!result.value) {
   await navigateTo('/')
 }
 
 useHead({
-  title: data.value.result.title,
+  title: result.value?.title,
 })
 
 onMounted(() => {
   const links = []
-  const { webfolders } = data.value.result
+  const { webfolders } = result.value
 
   webfolders.forEach((file) => {
     links.push(file)
@@ -30,7 +32,7 @@ onMounted(() => {
 .pageTop
   .pageTop__head
     NuxtLink.pageTop__return(to="/") {{('↩')}}
-    h2 {{data.result.title}}
+    h2 {{result.title}}
     span
   Framify.pageTop__frames(v-if="items.length" :items)
 </template>

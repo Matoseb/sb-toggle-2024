@@ -6,6 +6,7 @@ import { getSite } from '~/queries'
 const $index = ref(null)
 const router = useRouter()
 const { data, error } = await useKql(getSite())
+const result = useResult(data, error)
 const items = ref([])
 const { framify } = await import(
   /* vite-ignore */ 'https://unpkg.com/@matoseb/uselottie/build/bundle/index.js'
@@ -27,7 +28,7 @@ watch(
 useHead({
   // title: 'TOGGLE 2024',
   titleTemplate: (value) => {
-    const title = 'TOGGLE 2024'
+    const title = result.value.title
     return value ? `${value} | ${title}` : title
   },
 })
@@ -36,7 +37,7 @@ window.framify = framify
 
 onMounted(() => {
   const links = []
-  const { children } = data.value.result
+  const { children } = result.value
 
   children.forEach((page) => {
     page.webfolders.forEach((file) => {
