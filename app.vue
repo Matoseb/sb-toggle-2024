@@ -51,9 +51,9 @@ onMounted(() => {
 </script>
 
 <template lang="pug">
-  Framify.page(
-    v-show="isHome"
-    v-if="initialized && items.length"
+  //- v-show="isHome"
+  Framify.pageFramify(
+    v-if="initialized && items.length && isHome"
     ref="$index"
     :items
     :animate="true"
@@ -61,3 +61,15 @@ onMounted(() => {
   )
   NuxtPage
 </template>
+<style lang="scss">
+.pageFramify {
+  .framify__cell {
+    box-shadow: none !important;
+    z-index: 1;
+    max-width: 12rem;
+  }
+  .framify__row {
+    gap: 2rem;
+  }
+}
+</style>

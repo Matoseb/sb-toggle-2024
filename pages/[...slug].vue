@@ -52,6 +52,21 @@ onMounted(() => {
     width: 100%;
     top: 0;
     flex: 1 1 auto;
+
+    // .framify__cell {
+    //   box-shadow: none !important;
+    //   z-index: 1;
+    //   max-width: 12rem;
+    // }
+    // .framify__row {
+    //   gap: 2rem;
+    // }
+    .framify__cell {
+      max-width: 12rem;
+    }
+    .framify__row {
+      gap: 2rem;
+    }
   }
 
   &__head {
