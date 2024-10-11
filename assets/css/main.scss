@@ -20,10 +20,15 @@ body {
   width: 100%;
 }
 
-body .framify__cell {
-  box-shadow: none !important;
-  z-index: 1;
-  max-width: 10rem;
+body {
+  .framify__cell {
+    box-shadow: none !important;
+    z-index: 1;
+    max-width: 12rem;
+  }
+  .framify__row {
+    gap: 2rem;
+  }
 }
 
 .framify__cell::after {
