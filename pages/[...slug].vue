@@ -31,7 +31,8 @@ onMounted(() => {
 <template lang="pug">
 .pageTop
   .pageTop__head
-    NuxtLink.pageTop__return(to="/") {{('↩')}}
+    NuxtLink.pageTop__return(to="/")
+      span(v-html="textVariant('↩')")
     h2 {{result.title}}
     span
   Framify.pageTop__frames(v-if="items.length" :items)

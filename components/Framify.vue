@@ -20,9 +20,8 @@ onMounted(() => {
       const path = new URL(pageLink).pathname
       a.href = path
       a.removeAttribute('target')
-      a.innerHTML = textVariant('⤴')
-      a.innerHTML = '↪'
-      a.classList.add('topage')
+      a.innerHTML = textVariant('↪')
+      a.classList.add('boldLink')
     })
 })
 </script>

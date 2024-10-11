@@ -47,11 +47,24 @@ body .framify__cell-link.topage {
 }
 
 #app {
-  // .framify__cell-link:not(.topage) {
-  //   display: none;
-  // }
+  .framify__cell-link:not(.topage) {
+    // display: none;
+  }
 
-  // .framify__cell::after {
-  //   content: none;
-  // }
+  .framify__cell::after {
+    // content: none;
+  }
+}
+
+// .symbol {
+//   font-family: 'Symbola';
+// }
+
+// @font-face {
+//   font-family: 'Symbola';
+//   src: url('@/assets/fonts/arrows.ttf"') format('truetype');
+// }
+
+.boldLink {
+  font-weight: 900;
 }
