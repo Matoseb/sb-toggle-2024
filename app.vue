@@ -54,7 +54,9 @@ onMounted(() => {
   Framify.page(
     v-show="isHome"
     v-if="initialized && items.length"
-    ref="$index" :items
+    ref="$index"
+    :items
+    :animate="true"
   )
   NuxtPage
 </template>

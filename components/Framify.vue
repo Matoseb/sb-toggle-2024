@@ -1,6 +1,10 @@
 <script setup>
 const props = defineProps({
   items: Array,
+  animate: {
+    type: Boolean,
+    default: false,
+  },
 })
 const $elem = ref(null)
 useInternalLinks($elem)
@@ -10,7 +14,7 @@ onMounted(() => {
     return item.url
   })
 
-  window.framify(urls, { parent: unref($elem) })
+  window.framify(urls, { parent: unref($elem), animate: props.animate })
   unrefElement($elem)
     .querySelectorAll('iframe')
     .forEach((iframe, index) => {
