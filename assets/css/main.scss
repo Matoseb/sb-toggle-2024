@@ -20,9 +20,10 @@ body {
   width: 100%;
 }
 
-.framify__cell {
+body .framify__cell {
   box-shadow: none !important;
   z-index: 1;
+  max-width: 10rem;
 }
 
 .framify__cell::after {
@@ -34,7 +35,7 @@ body {
   width: calc(100% / 3);
   aspect-ratio: 1 / 1;
   pointer-events: none;
-  border: 1px solid cyan;
+  // border: 1px solid cyan;
 }
 
 .page {

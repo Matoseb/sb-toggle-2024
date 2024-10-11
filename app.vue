@@ -57,6 +57,7 @@ onMounted(() => {
     ref="$index"
     :items
     :animate="true"
+    :interval="[3000, 6000]"
   )
   NuxtPage
 </template>
