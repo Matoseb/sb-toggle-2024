@@ -63,10 +63,16 @@ onMounted(() => {
 </template>
 <style lang="scss">
 .pageFramify {
+  width: 100%;
+
   .framify__cell {
     box-shadow: none !important;
     z-index: 1;
     max-width: 12rem;
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+    }
   }
   .framify__row {
     gap: 2rem;
