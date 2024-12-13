@@ -63,6 +63,7 @@ onMounted(() => {
         style.height = `${bounds.height}px`
       })
   })
+  console.log(props.items)
 })
 </script>
 
@@ -76,6 +77,7 @@ onMounted(() => {
       FramePage.framify__cell(
         :src="item.src"
         :data-src="item.src"
+        :data-title="item.file.title"
         :index
       )
         //- v-show="itemFilter(item)"
@@ -98,6 +100,8 @@ onMounted(() => {
 
   &__iframes {
     position: fixed;
+    inset: 0;
+    z-index: 1;
 
     @include layout-mobile {
       position: absolute;
@@ -106,9 +110,6 @@ onMounted(() => {
       gap: $gap 0;
       padding: $gap;
     }
-
-    inset: 0;
-    z-index: 1;
 
     [homepage='false'] & {
       cursor: w-resize;

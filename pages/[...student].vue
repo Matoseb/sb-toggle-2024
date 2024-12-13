@@ -4,7 +4,7 @@ import { getPage } from '~/queries'
 const items = ref([])
 
 const route = useRoute()
-const { data, error } = await useKql(getPage(route.path))
+const { data, error } = await useKql(getPage(route.params.student[0]))
 
 const result = useResult(data, error)
 

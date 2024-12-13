@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import 'normalize.css'
 import '~/assets/css/main.scss'
 import { getSite } from '~/queries'
@@ -9,6 +9,8 @@ const router = useRouter()
 const { data, error } = await useKql(getSite())
 const result = useResult(data, error)
 const items = ref([])
+const itemsShuffled = ref([])
+
 const initialized = ref(false)
 const isHome = computed(() => {
   return router.currentRoute.value.path === '/'
@@ -42,11 +44,12 @@ onMounted(() => {
 
   children.forEach((page) => {
     page.webfolders.forEach((file) => {
-      links.push({ src: file.url, page })
+      links.push({ src: file.url, page, file })
     })
   })
 
-  items.value = shuffle(links)
+  items.value = links
+  itemsShuffled.value = shuffle(links)
 })
 
 const currStudent = computed(() => {
@@ -57,7 +60,7 @@ const currStudent = computed(() => {
 
 const filteredItems = computed(() => {
   // console.log(router.currentRoute.value)
-  if (!currStudent.value) return items.value
+  if (!currStudent.value) return itemsShuffled.value
 
   // return items.value
   const selected = items.value.filter((item) => {

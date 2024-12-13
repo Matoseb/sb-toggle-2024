@@ -5,13 +5,15 @@ import type {
   KirbyQuerySchema,
 } from '#nuxt-kql'
 
+const ROOT_SLUG = 'sb-toggle-2024'
+
 export function getSite(): KirbyQuerySchema {
   return {
-    query: 'site',
+    query: `site.page("${ROOT_SLUG}")`,
     select: {
       title: true,
       children: {
-        query: 'site.children',
+        query: 'page.children',
         select: {
           title: true,
           url: true,
@@ -19,6 +21,17 @@ export function getSite(): KirbyQuerySchema {
           webfolders: 'page.webfolders._toWebFolders',
         },
       },
+    },
+  }
+}
+
+export function getPage(pageSlug: string): KirbyQuerySchema {
+  return {
+    query: `page("${ROOT_SLUG}/${pageSlug}")`,
+    select: {
+      title: true,
+      url: true,
+      webfolders: 'page.webfolders._toWebFolders',
     },
   }
 }
@@ -44,14 +57,3 @@ export function getSite(): KirbyQuerySchema {
 //   shuffle(links)
 //   framify(links)
 // })
-
-export function getPage(pageId: string): KirbyQuerySchema {
-  return {
-    query: `page("${pageId}")`,
-    select: {
-      title: true,
-      url: true,
-      webfolders: 'page.webfolders._toWebFolders',
-    },
-  }
-}
