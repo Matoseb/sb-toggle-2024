@@ -48,7 +48,7 @@ onMounted(() => {
           iframe.style.removeProperty('transform')
           iframe.style.removeProperty('width')
           // iframe.style.removeProperty('height')
-          iframe.style.height = refEl.getBoundingClientRect().height + 'px'
+          iframe.style.height = refEl.offsetHeight + 'px'
           return
         }
 
@@ -100,6 +100,7 @@ onMounted(() => {
       display: flex;
       flex-direction: column;
       gap: $gap 0;
+      padding: $gap;
     }
 
     inset: 0;
