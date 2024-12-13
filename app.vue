@@ -47,7 +47,9 @@ onMounted(() => {
 })
 
 const currStudent = computed(() => {
-  return router.currentRoute.value.params.student
+  const { student = [] } = router.currentRoute.value.params
+  if (student.length > 1) return
+  return student[0]
 })
 
 const filteredItems = computed(() => {
@@ -61,7 +63,7 @@ const filteredItems = computed(() => {
   return selected
 })
 
-provide('app', { title })
+provide('app', { title, currStudent })
 
 async function handleClick(event) {
   if (!currStudent.value) return

@@ -52,15 +52,6 @@ onMounted(() => {
       })
   })
 })
-
-const currProject = computed(() => {
-  return router.currentRoute.value.params.student
-})
-
-function itemFilter(item) {
-  if (!currProject.value) return true
-  return item.page.slug === currProject.value
-}
 </script>
 
 <template lang="pug">
@@ -94,8 +85,11 @@ function itemFilter(item) {
   &__iframes {
     position: fixed;
     inset: 0;
-    cursor: w-resize;
     z-index: 1;
+
+    [homepage='false'] & {
+      cursor: w-resize;
+    }
 
     > iframe {
       position: absolute;
