@@ -4,6 +4,7 @@ import { useElementBounding, toReactive, unrefElement } from '@vueuse/core'
 const props = defineProps({
   src: String,
   container: Object,
+  index: Number,
 })
 const $cell = ref(null)
 const hover = ref(false)
@@ -58,6 +59,7 @@ onMounted(() => {
     }
   }
 
+  iframe.value.style.order = props.index
   iframe.value.onmouseenter = () => {
     hover.value = true
   }

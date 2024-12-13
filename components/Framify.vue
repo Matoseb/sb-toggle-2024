@@ -72,6 +72,7 @@ onMounted(() => {
       FramePage.framify__cell(
         :src="item.src"
         :data-src="item.src"
+        :index
       )
         //- v-show="itemFilter(item)"
         slot(:item)
