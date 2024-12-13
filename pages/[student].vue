@@ -16,6 +16,8 @@ useHead({
   title: result.value?.title,
 })
 
+const { title } = inject('app')
+
 onMounted(() => {
   const links = []
   const { webfolders } = result.value
@@ -24,18 +26,19 @@ onMounted(() => {
     links.push(file)
   })
 
+  title.value = result.value.title
   items.value = links
 })
 </script>
 
 <template lang="pug">
 .pageTop
-  .pageTop__head
-    NuxtLink.pageTop__return(to="/")
-      span(v-html="textVariant('↩')")
-    h2 {{result.title}}
-    span
-  Framify.pageTop__frames(v-if="items.length" :items)
+  //- .pageTop__head
+  //-   NuxtLink.pageTop__return(to="/")
+  //-     span(v-html="textVariant('↩')")
+  //-   h2 {{result.title}}
+  //-   span
+  //- Framify.pageTop__frames(v-if="items.length" :items)
 </template>
 <style lang="scss">
 .pageTop {
@@ -44,6 +47,7 @@ onMounted(() => {
   background-color: #fff;
   width: 100%;
   display: flex;
+  display: none;
   flex-direction: column;
   min-height: 100dvh;
   top: 0;
@@ -53,14 +57,6 @@ onMounted(() => {
     top: 0;
     flex: 1 1 auto;
 
-    // .framify__cell {
-    //   box-shadow: none !important;
-    //   z-index: 1;
-    //   max-width: 12rem;
-    // }
-    // .framify__row {
-    //   gap: 2rem;
-    // }
     .framify__cell {
       max-width: 12rem;
     }

@@ -15,6 +15,7 @@ export function getSite(): KirbyQuerySchema {
         select: {
           title: true,
           url: true,
+          slug: true,
           webfolders: 'page.webfolders._toWebFolders',
         },
       },

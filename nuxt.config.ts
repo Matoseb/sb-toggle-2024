@@ -10,7 +10,7 @@ export default defineNuxtConfig({
 
   // If you project doesn't require i18n, use the `without-i18n` branch instead:
   // https://github.com/johannschopplich/cacao-kit-frontend/tree/chore/without-i18n
-  modules: ['@vueuse/nuxt', 'nuxt-kql'],
+  modules: ['@vueuse/nuxt', 'nuxt-kql', '@nuxt/icon'],
 
   app: {
     rootId: 'app',
@@ -43,6 +43,12 @@ export default defineNuxtConfig({
   //   },
   // },
 
+  icon: {
+    serverBundle: {
+      collections: ['uil'], // <!--- this
+    },
+  },
+
   vite: {
     server: {
       // This is only required for the `pnpm dev:tunnel` command
@@ -52,6 +58,17 @@ export default defineNuxtConfig({
           target: process.env.KIRBY_BASE_URL,
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/__kirby/, ''),
+        },
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // @use "sass:list";
+          // @use "sass:string";
+          api: 'modern-compiler',
+          additionalData: `@use "sass:math";
+            @use "@/assets/css/_global.scss" as *;`,
         },
       },
     },

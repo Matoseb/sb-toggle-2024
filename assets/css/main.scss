@@ -1,4 +1,11 @@
-$color-dark: black;
+:root {
+  --duration: 333ms;
+  --curve: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   min-height: 100dvh;
@@ -6,10 +13,12 @@ body {
   margin: 0;
   background-color: white;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   width: 100%;
   font-family: Helvetica, Arial, sans-serif;
+  overscroll-behavior: none;
+
+  @include hide-scrollbar;
 }
 
 #app {
@@ -74,4 +83,19 @@ body .framify__cell-link.topage {
 
 .boldLink {
   font-weight: 900;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-hover {
+  background-color: $color-primary;
+  color: $color-dark;
+
+  &:hover {
+    background-color: $color-primary-hover;
+  }
 }

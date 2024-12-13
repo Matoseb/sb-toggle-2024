@@ -1,0 +1,51 @@
+@use 'sass:list';
+@use 'sass:string';
+
+$color-dark: black;
+$color-light: white;
+$gap: 1rem;
+$gap-small: 0.5rem;
+$color-primary: rgba(218, 218, 218, 0.448);
+$color-primary-hover: rgba(218, 218, 218, 0.8);
+
+@mixin layout-mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin transition($transitions...) {
+  $all-props: ();
+
+  @each $transition in $transitions {
+    $property: list.nth($transition, 1);
+    $duration: var(--duration);
+    $timing: var(--curve);
+    $delay: null;
+
+    @if list.length($transition) >= 2 {
+      $duration: list.nth($transition, 2);
+    }
+    @if list.length($transition) >= 3 {
+      $timing: list.nth($transition, 3);
+    }
+    @if list.length($transition) >= 4 {
+      $delay: list.nth($transition, 4);
+    }
+
+    $compiled: #{$property} #{$duration} #{$timing} #{$delay};
+    $all-props: list.append($all-props, $compiled, comma);
+  }
+
+  // Set the transition property with all transitions joined by commas
+  transition: $all-props;
+}
+
+@mixin hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
