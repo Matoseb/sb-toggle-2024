@@ -7,7 +7,7 @@ import { animateFrames } from '~/scripts/autoanimate'
 // import '~/scripts/animator'
 // monkey patch Animation.addEventListeners
 
-const [$elem] = useAutoAnimate({
+const [$elem, setEnabled] = useAutoAnimate({
   update: (el) => {
     console.log('BRO')
   },
@@ -33,6 +33,10 @@ const router = useRouter()
 useInternalLinks($elem)
 
 onMounted(() => {
+  watchEffect(() => {
+    setEnabled(!isMobileLayout.value)
+  })
+
   const cellContainer = unrefElement($elem)
   const { pause, resume } = useRafFn(() => {
     unrefElement($frames)

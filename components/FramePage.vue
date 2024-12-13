@@ -121,6 +121,10 @@ onMounted(() => {
 
     @include transition(opacity);
 
+    @include layout-mobile {
+      transition-duration: 50ms;
+    }
+
     &[loaded='false'],
     &[mounted='false'] {
       opacity: 0;
