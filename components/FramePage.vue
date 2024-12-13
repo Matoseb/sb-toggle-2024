@@ -59,7 +59,6 @@ onMounted(() => {
   }
 
   iframe.value.onmouseenter = () => {
-    console.log('HOVER')
     hover.value = true
   }
   iframe.value.onmouseleave = () => {
