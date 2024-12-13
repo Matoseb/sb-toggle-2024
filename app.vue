@@ -56,7 +56,7 @@ onMounted(() => {
     v-if="initialized && items.length && isHome"
     ref="$index"
     :items
-    :animate="true"
+    :animate="false"
     :interval="[3000, 5000]"
   )
   NuxtPage
