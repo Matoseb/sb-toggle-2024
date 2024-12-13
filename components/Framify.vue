@@ -26,7 +26,7 @@ const props = defineProps({
 })
 
 const frameId = useId()
-
+const { isMobileLayout } = inject('app')
 provide('framify', { $frames, frameId })
 
 const router = useRouter()
@@ -43,6 +43,14 @@ onMounted(() => {
         )
         if (!refEl) return
         if (iframe.getAttribute('mounted') === 'false') return
+
+        if (isMobileLayout.value) {
+          iframe.style.removeProperty('transform')
+          iframe.style.removeProperty('width')
+          // iframe.style.removeProperty('height')
+          iframe.style.height = refEl.getBoundingClientRect().height + 'px'
+          return
+        }
 
         const bounds = refEl.getBoundingClientRect()
         const style = iframe.style
@@ -72,6 +80,7 @@ onMounted(() => {
 .framify {
   // display: flex;
   pointer-events: auto;
+  position: relative;
 
   &__cells {
     display: flex;
@@ -84,6 +93,14 @@ onMounted(() => {
 
   &__iframes {
     position: fixed;
+
+    @include layout-mobile {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: $gap 0;
+    }
+
     inset: 0;
     z-index: 1;
 
@@ -93,9 +110,12 @@ onMounted(() => {
 
     > iframe {
       position: absolute;
-      width: 0px;
-      height: 0px;
       pointer-events: auto;
+      will-change: transform, opacity;
+
+      @include layout-mobile {
+        position: relative;
+      }
     }
   }
 

@@ -2,6 +2,7 @@
 import 'normalize.css'
 import '~/assets/css/main.scss'
 import { getSite } from '~/queries'
+import { useMediaQuery } from '@vueuse/core'
 
 const $index = ref(null)
 const router = useRouter()
@@ -12,6 +13,8 @@ const initialized = ref(false)
 const isHome = computed(() => {
   return router.currentRoute.value.path === '/'
 })
+
+const isMobileLayout = useMediaQuery('(max-width: 768px)')
 
 const title = ref('TOGGLE')
 watch(
@@ -63,7 +66,7 @@ const filteredItems = computed(() => {
   return selected
 })
 
-provide('app', { title, currStudent })
+provide('app', { title, currStudent, isMobileLayout })
 
 async function handleClick(event) {
   if (!currStudent.value) return
@@ -73,7 +76,7 @@ async function handleClick(event) {
 </script>
 
 <template lang="pug">
-.page(:homepage="isHome")
+.page(:homepage="isHome" :is-mobile="isMobileLayout")
   h1.page-title
     LinkButton.page-return(:to="'/'" icon="uil:arrow-left")
     span(v-text="title")
