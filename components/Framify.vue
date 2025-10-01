@@ -9,7 +9,7 @@ import { animateFrames } from '~/scripts/autoanimate'
 
 const [$elem, setEnabled] = useAutoAnimate({
   update: (el) => {
-    console.log('BRO')
+    // console.log('BRO')
   },
 })
 const $frames = ref(null)
@@ -63,7 +63,7 @@ onMounted(() => {
         style.height = `${bounds.height}px`
       })
   })
-  console.log(props.items)
+  // console.log(props.items)
 })
 </script>
 

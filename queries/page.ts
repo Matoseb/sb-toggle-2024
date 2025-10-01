@@ -5,11 +5,15 @@ import type {
   KirbyQuerySchema,
 } from '#nuxt-kql'
 
-const ROOT_SLUG = 'sb-toggle-2024'
+export const ROOT_SLUGS = {
+  '2024': 'sb-toggle-2024',
+  '2025': 'sb-toggle-2025',
+}
 
-export function getSite(): KirbyQuerySchema {
+export function getYear(year: string): KirbyQuerySchema {
+  // console.log('Fetching year:', ROOT_SLUGS[year])
   return {
-    query: `site.page("${ROOT_SLUG}")`,
+    query: `site.page("${ROOT_SLUGS[year]}")`,
     select: {
       title: true,
       children: {
@@ -25,9 +29,15 @@ export function getSite(): KirbyQuerySchema {
   }
 }
 
-export function getPage(pageSlug: string): KirbyQuerySchema {
+export function getPage({
+  student,
+  year,
+}: {
+  student: string
+  year: string
+}): KirbyQuerySchema {
   return {
-    query: `page("${ROOT_SLUG}/${pageSlug}")`,
+    query: `page("${ROOT_SLUGS[year]}/${student}")`,
     select: {
       title: true,
       url: true,
