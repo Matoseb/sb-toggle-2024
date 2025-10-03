@@ -7,8 +7,17 @@ const props = defineProps({
 })
 
 const external = computed(() => {
+  const target = 'toggle-window'
   return props.external
-    ? { target: '_blank', rel: 'noopener', external: true }
+    ? {
+        target,
+        rel: 'noopener',
+        external: true,
+        onclick: (event) => {
+          event.preventDefault()
+          window.open(event.currentTarget.href, target, 'width=600,height=800')
+        },
+      }
     : {}
 })
 </script>
