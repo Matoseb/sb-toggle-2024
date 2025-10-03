@@ -11,6 +11,19 @@ const currYear = computed(() => {
   return '/' + router.currentRoute.value.params.year
 })
 
+const popup = usePopup()
+
+watch(
+  router.currentRoute,
+  (to) => {
+    if (to.params.student) return
+    if (popup.win.value) {
+      popup.open('about:blank')
+    }
+  },
+  { immediate: true },
+)
+
 const isHome = computed(() => {
   const curr = router.currentRoute.value
   return curr.path === '/'

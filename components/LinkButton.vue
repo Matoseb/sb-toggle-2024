@@ -6,17 +6,12 @@ const props = defineProps({
   external: { type: Boolean, default: false },
 })
 
+const { bindings } = usePopup()
+
 const external = computed(() => {
-  const target = 'toggle-window'
   return props.external
     ? {
-        target,
-        rel: 'noopener',
-        external: true,
-        onclick: (event) => {
-          event.preventDefault()
-          window.open(event.currentTarget.href, target, 'width=600,height=800')
-        },
+        ...bindings,
       }
     : {}
 })
